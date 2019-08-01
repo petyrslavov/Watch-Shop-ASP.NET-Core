@@ -1,0 +1,51 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<div class="account">
+    <div class="container">
+        <div class="account-top heading">
+            <h2>ACCOUNT</h2>
+        </div>
+        <div class="account-main">
+            <div class="col-md-6 account-left">
+                <section>
+                    <form method="post">
+                        <h3>Existing User</h3>
+                        <div class="account-bottom">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="form-group">
+                                <input asp-for="Input.Username" placeholder="Username" type="text" tabindex="3" required>
+                                <span asp-validation-for="Input.Username" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Input.Password" placeholder="Password" type="password" tabindex="3" required>
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label asp-for="Input.RememberMe">
+                                        <input asp-for="Input.RememberMe" />
+                                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                    </label>
+                                </div>
+                                <div class="address">
+                                    <input type="submit" value="Login">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+            <div class="col-md-6 account-right account-left">
+                <h3>New User? Create an Account</h3>
+                <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Create an account</a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

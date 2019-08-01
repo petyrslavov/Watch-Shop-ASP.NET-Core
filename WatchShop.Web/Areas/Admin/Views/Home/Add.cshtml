@@ -1,0 +1,47 @@
+﻿@model WatchShop.Web.Areas.Admin.Models.BindingModels.WatchBindingModel
+@{
+    ViewData["Title"] = "Add";
+}
+
+<div class="register">
+    <div class="container">
+        <div class="register-top heading">
+            <h2>ADD WATCH</h2>
+        </div>
+        <form method="post">
+            <div class="register-main">
+                <div class="col-md-6 account-left">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <input asp-for="Model" placeholder="Model" type="text" tabindex="1" required>
+                        <span asp-validation-for="Model" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Description" placeholder="Description" type="text" tabindex="1" required>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Price" placeholder="Price" type="text" tabindex="1" required>
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Image" placeholder="Image" type="text" tabindex="1" required>
+                        <span asp-validation-for="Image" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Category" placeholder="Category" type="text" tabindex="1" required>
+                        <span asp-validation-for="Category" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="address submit">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ProductViewModel>
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<!--start-ckeckout-->
+<div class="ckeckout">
+    <div class="container">
+        <div class="ckeck-top heading">
+            <h2>MY SHOPPING BAG</h2>
+        </div>
+        <div class="ckeckout-top">
+            <div class="cart-items">
+                <h3 align="right">Total Price:$ @Model.Sum(p => p.Price) </h3>
+                <div class="in-check">
+                    <ul class="unit">
+                        <li><span>Item</span></li>
+                        <li><span>Product Name</span></li>
+                        <li><span>Unit Price</span></li>
+                        <li><span>Delivery Details</span></li>
+                        <li> </li>
+                        <div class="clearfix"> </div>
+                    </ul>
+                    <div class="close1"> </div>
+                    @foreach (var product in Model)
+                    {
+                    <ul class="cart-header">
+                        <form method="post" asp-controller="Cart" asp-action="Remove" asp-route-id="@product.Id">
+                            <div class="col-lg-offset-10">
+                                <div class="address">
+                                    <input type="submit" value="X">
+                                </div>
+                            </div>
+                        </form>
+                        <li class="ring-in">
+                            <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id"><img width="140" height="140" src=@product.Image class="img-responsive" alt=""></a>
+                        </li>
+                        <li><span class="name">@product.Model</span></li>
+                        <li><span class="cost">$ @product.Price</span></li>
+                        <li>
+                            <span>Free</span>
+                            <p>Delivered in 2-3 business days</p>
+                        </li>
+                        <div class="clearfix"> </div>
+                    </ul>
+                    }
+                </div>
+                <form method="get" asp-controller="Product" asp-action="All">
+                    <div class="col-lg  -10">
+                        <div class="address">
+                            <input type="submit" value="Continue Shopping">
+                        </div>
+                    </div>
+                </form>
+                <form method="get" asp-controller="Order" asp-action="Checkout">
+                    <div class="col-lg-offset-10">
+                        <div class="address">
+                            <input type="submit" value="Procced To Checkout">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end-ckeckout-->
