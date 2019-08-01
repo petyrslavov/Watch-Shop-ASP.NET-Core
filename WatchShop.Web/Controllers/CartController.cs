@@ -23,13 +23,12 @@ namespace WatchShop.Web.Controllers
         public WatchShopDbContext context { get; set; }
 
         [HttpGet]
-        public IActionResult Bag(/*string id*/)
+        public IActionResult Bag(string id)
         {
             var cart = this.context.Carts
                 .Include(p => p.Products)
                 .ThenInclude(p => p.Product)
-                .First();
-                //.SingleOrDefault(p => p.Id == id);
+                .SingleOrDefault(p => p.Id == id);
 
             var model = cart.Products
                 .Select(p => p.Product)
