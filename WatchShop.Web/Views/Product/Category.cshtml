@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<ProductViewModel>
 @{
-    ViewData["Title"] = "All";
+    ViewData["Title"] = "Category";
 }
 
 <div class="prdt">
@@ -30,13 +30,13 @@
                         <h4>Catogories</h4>
                         <div class="row1 scroll-pane">
                             <form method="get">
-                            <div class="col col-4">
-                                <label class="checkbox"><input asp-controller="Product" asp-action="All" type="submit"  name="checkbox" checked=""><i></i>All Accessories</label>
-                            </div>
                                 <div class="col col-4">
-                                <label class="checkbox"><input asp-controller="Product" asp-action="Category" asp-route-id="Woman" type="submit"  name="checkbox"><i></i>Women Watches</label>
-                                <label class="checkbox"><input asp-controller="Product" asp-action="Category" asp-route-id="Kids" type="submit"  name="checkbox"><i></i>Kids Watches</label>
-                                <label class="checkbox"><input asp-controller="Product" asp-action="Category" asp-route-id="Men" type="submit" name="checkbox"><i></i>Men Watches</label>
+                                    <label class="checkbox"><input asp-controller="Product" asp-action="All" type="submit" name="checkbox" checked=""><i></i>All Accessories</label>
+                                </div>
+                                <div class="col col-4">
+                                    <label class="checkbox"><input asp-controller="Product" asp-action="Category" asp-route-id="Woman" type="submit" name="checkbox"><i></i>Women Watches</label>
+                                    <label class="checkbox"><input asp-controller="Product" asp-action="Category" asp-route-id="Kids" type="submit" name="checkbox"><i></i>Kids Watches</label>
+                                    <label class="checkbox"><input asp-controller="Product" asp-action="Category" asp-route-id="Men" type="submit" name="checkbox"><i></i>Men Watches</label>
                                 </div>
                             </form>
                         </div>

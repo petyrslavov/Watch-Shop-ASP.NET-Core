@@ -21,14 +21,14 @@
                         <span asp-validation-for="Address" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <input asp-for="PhoneNumber" placeholder="Phone Numbers" type="text" tabindex="1" required>
+                        <input asp-for="PhoneNumber" placeholder="Phone Number" type="text" tabindex="1" required>
                         <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                     </div>
                     <div class="address submit">
                         <input type="submit" value="Order">
-                        <div class="alert alert-success">
+                        @*<div class="alert alert-success">
                             <strong>Success!</strong>Your order was confirm!
-                        </div>
+                        </div>*@
                     </div>
                 </div>
             </div>

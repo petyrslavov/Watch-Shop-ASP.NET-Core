@@ -13,7 +13,6 @@ namespace WatchShop.Web.Controllers
 {
     public class CartController : Controller
     {
-      
         public CartController(WatchShopDbContext context)
         {
             this.context = context;
@@ -49,7 +48,8 @@ namespace WatchShop.Web.Controllers
             this.context.CartItems.Remove(productToRemove);
             this.context.SaveChanges();
 
-            return RedirectToAction("Bag", "Cart");
+            //TODO FIX REDIRECTION
+            return RedirectToAction("Bag", "Cart", new { id = id });
         }
     }
 }

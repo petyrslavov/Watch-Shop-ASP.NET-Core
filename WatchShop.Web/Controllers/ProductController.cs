@@ -53,11 +53,24 @@ namespace WatchShop.Web.Controllers
         }
 
         [HttpGet]
+        public IActionResult Category(string id)
+        {
+            var products = this.context.Products.Where(c => c.Category.Name == id).ToList();
+
+            var model = products
+            .Select(ProductViewModel.FromProduct)
+            .ToList();
+
+            return View(model);
+        }
+
+
+        [HttpGet]
         public IActionResult Search()
         {
             if (string.IsNullOrEmpty(this.SearchTerm))
             {
-                return this.View();
+                return RedirectToAction("Index", "Home");
             }
 
             var foundProducts = this.context.Products

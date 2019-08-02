@@ -16,6 +16,7 @@ namespace WatchShop.Web.Models.ViewModels
 
         public string Image { get; set; }
 
+
         public static Func<Product, ProductViewModel> FromProduct
         {
             get
