@@ -22,8 +22,6 @@ namespace WatchShop.Web.Controllers
         [HttpGet]
         public IActionResult Checkout()
         {
-            var user = User.Identity.Name;
-
             return View();
         }
 
@@ -34,15 +32,28 @@ namespace WatchShop.Web.Controllers
             {
                 return View();
             }
-            var order = this.context.PendingOrders.First();
 
-            order.Address = model.Address;
-            order.FullName = model.FullName;
-            order.IsConfirmed = true;
+            var username = User.Identity.Name;
 
+            var user = this.context.Users
+                .Include(c => c.Cart)
+                .ThenInclude(p => p.Products)
+                .ThenInclude(p => p.Product)
+                .FirstOrDefault(u => u.UserName == username);
+
+            var order = new PendingOrder()
+            {
+                Address = model.Address,
+                FullName = model.FullName,
+                IsConfirmed = false,
+                Items = user.Cart.Products
+            };
+
+            this.context.PendingOrders.Add(order);
+            user.Cart.Products.Clear();
             this.context.SaveChanges();
 
-            return View();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

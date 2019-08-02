@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using WatchShop.Models;
 
 namespace WatchShop.Web.Data
@@ -35,5 +36,17 @@ namespace WatchShop.Web.Data
 
             base.OnModelCreating(builder);
         }
+
+        //public class ApplicationContextDbFactory : IDesignTimeDbContextFactory<WatchShopDbContext>
+        //{
+        //    WatchShopDbContext IDesignTimeDbContextFactory<WatchShopDbContext>.CreateDbContext(string[] args)
+        //    {
+        //        var optionsBuilder = new DbContextOptionsBuilder<WatchShopDbContext>();
+        //        optionsBuilder.UseSqlServer<WatchShopDbContext>("Server = (localdb)\\mssqllocaldb; Database = MyDatabaseName; Trusted_Connection = True; MultipleActiveResultSets = true");
+
+        //        return new WatchShopDbContext(optionsBuilder.Options);
+        //    }
+        //}
+
     }
 }

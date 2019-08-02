@@ -18,7 +18,6 @@ namespace WatchShop.Web.Controllers
             this.context = context;
         }
 
-
         public WatchShopDbContext context { get; set; }
 
         [HttpGet]

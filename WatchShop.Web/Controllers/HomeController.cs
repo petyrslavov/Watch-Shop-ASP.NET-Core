@@ -33,7 +33,7 @@ namespace WatchShop.Web.Controllers
                 .Include(c => c.Cart)
                 .FirstOrDefault(u => u.UserName == username);
 
-            if (user != null)
+            if (user != null && user.Cart != null)
             {
                 var cart = this.context.Carts.FirstOrDefault(p => p.Id == user.Cart.Id);
 
@@ -44,6 +44,6 @@ namespace WatchShop.Web.Controllers
             }
 
             return View();
-}
+        }
     }
 }

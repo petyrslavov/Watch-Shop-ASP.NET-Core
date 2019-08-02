@@ -110,25 +110,10 @@ namespace WatchShop.Web.Controllers
                 user.Cart = new Cart();
             }
 
-            var order = this.context.PendingOrders
-                .Include(p => p.Items)
-                .FirstOrDefault(u => u.IsConfirmed == false);
-
-            if (order == null)
-            {
-                order = new PendingOrder()
-                {
-                    Items = user.Cart.Products
-                };
-
-                this.context.PendingOrders.Add(order);
-            }
-
             var cartItem = new CartItem()
             {
                 Product = product,
                 ProductId = product.Id,
-                PendingOrderId = order.Id
             };
 
             user.Cart.Products.Add(cartItem);

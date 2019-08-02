@@ -1,5 +1,7 @@
 ﻿@using WatchShop.Models
+
 @model CartViewModel
+
 
 @{
     ViewData["Title"] = "Home Page";
@@ -21,7 +23,7 @@
                                         <h4>Shop</h4>
                                         <ul>
                                             <li><a asp-controller="Product" asp-action="All">Watches</a></li>
-                                            @if (User.Identity.IsAuthenticated)
+                                            @if (User.Identity.IsAuthenticated && Model != null)
                                             {
                                                 <li><a asp-controller="Cart" asp-action="Bag" asp-route-id="@Model.Id">My Shopping Bag</a></li>
                                             }
