@@ -686,6 +686,7 @@ a.mask {
     overflow: hidden;
     display: block;
     padding: 12px 0px;
+    text-decoration:dotted;
 }
 .product-left:hover .product-bottom h3{
 	color:#73B6E1;
