@@ -16,13 +16,16 @@
                     <ul class="memenu skyblue">
                         <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
                         <li class="grid">
-                            <a href="#">Men</a>
+                            <a href="#">Watches</a>
                             <div class="mepanel">
                                 <div class="row">
                                     <div class="col1 me-one">
                                         <h4>Shop</h4>
                                         <ul>
-                                            <li><a asp-controller="Product" asp-action="All">Watches</a></li>
+                                            <li><a asp-controller="Product" asp-action="All">All</a></li>
+                                            <li><a asp-controller="Product" asp-action="Category" asp-route-id="Men">Men</a></li>
+                                            <li><a asp-controller="Product" asp-action="Category" asp-route-id="Woman">Woman</a></li>
+                                            <li><a asp-controller="Product" asp-action="Category" asp-route-id="Kids">Kids</a></li>
                                             @if (User.Identity.IsAuthenticated && Model != null)
                                             {
                                                 <li><a asp-controller="Cart" asp-action="Bag" asp-route-id="@Model.Id">My Shopping Bag</a></li>
@@ -39,9 +42,13 @@
                 </div>
                 <div class="clearfix"> </div>
             </div>
-            <form class="form-inline my-2 my-lg-0" method="get" asp-controller="Product" asp-action="Search">
-                <input class="form-control mr-sm-2" type="search" name="searchTerm" placeholder="Search" aria-label="Search">
-                <button class="btn btn-light my-2 my-sm-0" type="submit"><span class="fa fa-search"></span></button>
+            <form method="get">
+                <div class="col-md-3 header-right">
+                    <div class="search-bar">
+                        <input type="text" name="searchTerm" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                        <input  asp-controller="Product" asp-action="Search" type="submit" value="">
+                    </div>
+                </div>
             </form>
             <div class="clearfix"> </div>
         </div>
