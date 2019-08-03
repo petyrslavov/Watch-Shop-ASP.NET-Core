@@ -1,49 +1,5 @@
-﻿@model IEnumerable<ProductViewModel>
-@{
+﻿@{
     ViewData["Title"] = "Category";
 }
 
-<div class="prdt">
-    <div class="container">
-        <div class="prdt-top">
-            <div class="col-md-9 prdt-left">
-                <div class="product-one">
-                    @foreach (var product in Model)
-                    {
-                        <div class="col-md-4 product-left p-left">
-                            <div class="product-main simpleCart_shelfItem">
-                                <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" class="mask"><img width="180" height="180" class="img-responsive zoom-img" src=@product.Image alt="" /></a>
-                                <div class="product-bottom">
-                                    <h3>@product.Model</h3>
-                                    <p>Explore Now</p>
-                                    <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ @product.Price</span></h4>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-            <div class="col-md-3 prdt-right">
-                <div class="w_sidebar">
-                    <section class="sky-form">
-                        <h4>Catogories</h4>
-                        <div class="row1 scroll-pane">
-                            <form method="get">
-                                <div class="col col-4">
-                                    <label class="checkbox"><input asp-controller="Product" asp-action="All" type="submit" name="checkbox" checked=""><i></i>All Accessories</label>
-                                </div>
-                                <div class="col col-4">
-                                    <label class="checkbox"><input asp-controller="Product" asp-action="Category" asp-route-id="Woman" type="submit" name="checkbox"><i></i>Women Watches</label>
-                                    <label class="checkbox"><input asp-controller="Product" asp-action="Category" asp-route-id="Kids" type="submit" name="checkbox"><i></i>Kids Watches</label>
-                                    <label class="checkbox"><input asp-controller="Product" asp-action="Category" asp-route-id="Men" type="submit" name="checkbox"><i></i>Men Watches</label>
-                                </div>
-                            </form>
-                        </div>
-                    </section>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>
-</div>
+<partial name="_ProductsPartial" />
