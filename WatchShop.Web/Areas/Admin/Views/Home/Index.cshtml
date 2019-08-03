@@ -1,6 +1,7 @@
-﻿
+﻿@using WatchShop.Models
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Home Page";
 }
 
 <div class="header-bottom">
@@ -9,26 +10,25 @@
             <div class="col-md-9 header-left">
                 <div class="top-nav">
                     <ul class="memenu skyblue">
-                        <li class="active"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
                         <li class="grid">
-                            <a href="#">Men</a>
+                            <a href="#">Watches</a>
                             <div class="mepanel">
                                 <div class="row">
                                     <div class="col1 me-one">
                                         <h4>Shop</h4>
                                         <ul>
-                                            <li><a asp-controller="Product" asp-action="All">Watches</a></li>
-                                            <li><a href="products.html">My Shopping Bag</a></li>
+                                            <li><a asp-area="" asp-controller="Product" asp-action="All">All</a></li>
+                                            <li><a asp-area="" asp-controller="Product" asp-action="Category" asp-route-id="Men">Men</a></li>
+                                            <li><a asp-area="" asp-controller="Product" asp-action="Category" asp-route-id="Woman">Woman</a></li>
+                                            <li><a asp-area="" asp-controller="Product" asp-action="Category" asp-route-id="Kids">Kids</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </li>
                         <li class="grid">
-                            <a href="typo.html">Blog</a>
-                        </li>
-                        <li class="grid">
-                            <a href="contact.html">Contact</a>
+                            <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
                         <li class="grid">
                             <a asp-area="Admin" asp-controller="Home" asp-action="Add">Add Watch</a>
@@ -37,17 +37,18 @@
                 </div>
                 <div class="clearfix"> </div>
             </div>
-            <div class="col-md-3 header-right">
-                <div class="search-bar">
-                    <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
-                    <input type="submit" value="">
+            <form method="get">
+                <div class="col-md-3 header-right">
+                    <div class="search-bar">
+                        <input type="text" name="searchTerm" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                        <input asp-area="" asp-controller="Product" asp-action="Search" type="submit" value="">
+                    </div>
                 </div>
-            </div>
+            </form>
             <div class="clearfix"> </div>
         </div>
     </div>
 </div>
-
 <!--banner-starts-->
 <div class="bnr" id="home">
     <div id="top" class="callbacks_container">

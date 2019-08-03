@@ -1,12 +1,9 @@
 ﻿@using WatchShop.Models
-
 @model CartViewModel
-
 
 @{
     ViewData["Title"] = "Home Page";
 }
-
 
 <div class="header-bottom">
     <div class="container">
@@ -46,7 +43,7 @@
                 <div class="col-md-3 header-right">
                     <div class="search-bar">
                         <input type="text" name="searchTerm" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
-                        <input  asp-controller="Product" asp-action="Search" type="submit" value="">
+                        <input asp-controller="Product" asp-action="Search" type="submit" value="">
                     </div>
                 </div>
             </form>
@@ -54,7 +51,6 @@
         </div>
     </div>
 </div>
-
 <!--banner-starts-->
 <div class="bnr" id="home">
     <div id="top" class="callbacks_container">
