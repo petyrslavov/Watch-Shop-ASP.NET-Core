@@ -37,7 +37,6 @@ namespace WatchShop.Web.Controllers
             return View(model);
         }
 
-
         [HttpPost]
         public IActionResult Remove(string id)
         {
@@ -48,8 +47,12 @@ namespace WatchShop.Web.Controllers
             this.context.CartItems.Remove(productToRemove);
             this.context.SaveChanges();
 
+            var username = this.User.Identity.Name;
+            var user = this.context.Users.Include(c => c.Cart).FirstOrDefault(u => u.UserName == username);
+            var cartId = user.Cart.Id;
+
             //TODO FIX REDIRECTION
-            return RedirectToAction("Bag", "Cart", new { id = id });
+            return RedirectToAction("Bag", "Cart", new {  id = cartId });
         }
     }
 }
