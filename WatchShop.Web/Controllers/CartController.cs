@@ -8,17 +8,20 @@ using WatchShop.Models;
 using WatchShop.Web.Data;
 using WatchShop.Web.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using AutoMapper;
 
 namespace WatchShop.Web.Controllers
 {
     public class CartController : Controller
     {
-        public CartController(WatchShopDbContext context)
+        private readonly IMapper mapper;
+        public WatchShopDbContext context { get; set; }
+
+        public CartController(WatchShopDbContext context, IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
         }
-
-        public WatchShopDbContext context { get; set; }
 
         [HttpGet]
         public IActionResult Bag(string id)
@@ -28,11 +31,11 @@ namespace WatchShop.Web.Controllers
                .ThenInclude(p => p.Product)
                .SingleOrDefault(p => p.Id == id);
 
-            var model = cart.Products
+            var products = cart.Products
                 .Select(p => p.Product)
-                .Select(ProductViewModel.FromProduct)
                 .ToList();
 
+            var model = mapper.Map<IEnumerable<ProductViewModel>>(products);
 
             return View(model);
         }
@@ -51,7 +54,6 @@ namespace WatchShop.Web.Controllers
             var user = this.context.Users.Include(c => c.Cart).FirstOrDefault(u => u.UserName == username);
             var cartId = user.Cart.Id;
 
-            //TODO FIX REDIRECTION
             return RedirectToAction("Bag", "Cart", new {  id = cartId });
         }
     }

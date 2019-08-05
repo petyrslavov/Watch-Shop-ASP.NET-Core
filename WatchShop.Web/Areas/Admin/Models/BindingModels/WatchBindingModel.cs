@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using WatchShop.Models;
 
 namespace WatchShop.Web.Areas.Admin.Models.BindingModels
 {

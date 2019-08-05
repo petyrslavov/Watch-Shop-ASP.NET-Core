@@ -48,7 +48,6 @@ namespace WatchShop.Web.Areas.Admin.Controllers
             this.context.Categories.Add(category);
             this.context.SaveChanges();
 
-
             var watch = new Product()
             {
                 Model = bindingModel.Model,

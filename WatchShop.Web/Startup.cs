@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WatchShop.Models;
 using SoftUniClone.Web.Common;
+using AutoMapper;
 
 namespace WatchShop.Web
 {
@@ -46,6 +47,7 @@ namespace WatchShop.Web
                             .AddEntityFrameworkStores<WatchShopDbContext>();
 
 
+            services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

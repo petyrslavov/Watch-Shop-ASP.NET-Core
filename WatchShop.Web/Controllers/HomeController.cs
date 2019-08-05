@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WatchShop.Web.Data;
@@ -13,12 +14,15 @@ namespace WatchShop.Web.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController(WatchShopDbContext context)
+        private readonly IMapper mapper;
+        public WatchShopDbContext context { get; set; }
+
+        public HomeController(WatchShopDbContext context, IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
         }
 
-        public WatchShopDbContext context { get; set; }
 
         public IActionResult Index()
         {
@@ -37,8 +41,7 @@ namespace WatchShop.Web.Controllers
             {
                 var cart = this.context.Carts.FirstOrDefault(p => p.Id == user.Cart.Id);
 
-                var model = new[] { cart }
-                .Select(CartViewModel.FromCart).FirstOrDefault();
+                var model = mapper.Map<CartViewModel>(cart);
 
                 return View(model);
             }

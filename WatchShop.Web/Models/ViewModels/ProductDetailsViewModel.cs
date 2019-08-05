@@ -18,19 +18,5 @@ namespace WatchShop.Web.Models.ViewModels
 
         public string Description { get; set; }
 
-        public static Func<Product, ProductDetailsViewModel> FromProduct
-        {
-            get
-            {
-                return product => new ProductDetailsViewModel()
-                {
-                    Id = product.Id,
-                    Model = product.Model,
-                    Price = product.Price,
-                    Image = product.Image,
-                    Description = product.Description,
-                };
-            }
-        }
     }
 }

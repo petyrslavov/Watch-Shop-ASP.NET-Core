@@ -15,20 +15,5 @@ namespace WatchShop.Web.Models.ViewModels
         public decimal Price { get; set; }
 
         public string Image { get; set; }
-
-
-        public static Func<Product, ProductViewModel> FromProduct
-        {
-            get
-            {
-                return product => new ProductViewModel()
-                {
-                    Id = product.Id,
-                    Model = product.Model,
-                    Price = product.Price,
-                    Image = product.Image,
-                };
-            }
-        }
     }
 }

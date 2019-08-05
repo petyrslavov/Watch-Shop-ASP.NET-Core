@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WatchShop.Models;
@@ -12,12 +13,15 @@ namespace WatchShop.Web.Controllers
 {
     public class ProductController : Controller
     {
-        public ProductController(WatchShopDbContext context)
+        private readonly IMapper mapper;
+        public WatchShopDbContext context { get; set; }
+
+        public ProductController(WatchShopDbContext context, IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
         }
 
-        public WatchShopDbContext context { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; }
@@ -27,9 +31,7 @@ namespace WatchShop.Web.Controllers
         {
             var products = this.context.Products.ToList();
 
-            var model = products
-            .Select(ProductViewModel.FromProduct)
-            .ToList();
+            var model = mapper.Map<IEnumerable<ProductViewModel>>(products);
 
             return View(model);
         }
@@ -45,11 +47,9 @@ namespace WatchShop.Web.Controllers
                 return this.NotFound();
             }
 
-            var model = new[] { product }
-            .Select(ProductDetailsViewModel.FromProduct)
-            .First();
+            var model = mapper.Map<ProductDetailsViewModel>(product);
 
-            return this.View(model);
+            return View(model);
         }
 
         [HttpGet]
@@ -57,9 +57,7 @@ namespace WatchShop.Web.Controllers
         {
             var products = this.context.Products.Where(c => c.Category.Name == id).ToList();
 
-            var model = products
-            .Select(ProductViewModel.FromProduct)
-            .ToList();
+            var model = mapper.Map<IEnumerable<ProductViewModel>>(products);
 
             return View(model);
         }
@@ -76,10 +74,11 @@ namespace WatchShop.Web.Controllers
             var foundProducts = this.context.Products
                 .Where(a => a.Model.ToLower().Contains(this.SearchTerm.ToLower()))
                 .OrderBy(a => a.Model)
-                .Select(ProductViewModel.FromProduct)
                 .ToList();
 
-            return this.View(foundProducts);
+            var model = mapper.Map<IEnumerable<ProductViewModel>>(foundProducts);
+
+            return this.View(model);
         }
 
         [HttpPost]

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,10 +16,12 @@ namespace WatchShop.Web.Areas.Admin.Controllers
     public class PendingOrderController : Controller
     {
         private readonly WatchShopDbContext context;
+        private readonly IMapper mapper;
 
-        public PendingOrderController(WatchShopDbContext context)
+        public PendingOrderController(WatchShopDbContext context, IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -29,9 +32,7 @@ namespace WatchShop.Web.Areas.Admin.Controllers
                 .Where(c => c.IsConfirmed == false)
                 .ToList();
 
-            var model = orders
-            .Select(OrdersViewModel.FromOrder)
-            .ToList();
+            var model = mapper.Map<IEnumerable<OrdersViewModel>>(orders);
 
             return View(model);
         }
