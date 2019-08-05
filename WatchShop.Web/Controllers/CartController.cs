@@ -24,14 +24,15 @@ namespace WatchShop.Web.Controllers
         public IActionResult Bag(string id)
         {
             var cart = this.context.Carts
-                .Include(p => p.Products)
-                .ThenInclude(p => p.Product)
-                .SingleOrDefault(p => p.Id == id);
+               .Include(p => p.Products)
+               .ThenInclude(p => p.Product)
+               .SingleOrDefault(p => p.Id == id);
 
             var model = cart.Products
                 .Select(p => p.Product)
                 .Select(ProductViewModel.FromProduct)
                 .ToList();
+
 
             return View(model);
         }

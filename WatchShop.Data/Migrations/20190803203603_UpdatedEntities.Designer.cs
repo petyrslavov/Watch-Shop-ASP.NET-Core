@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WatchShop.Web.Data;
 
 namespace WatchShop.Web.Data.Migrations
 {
     [DbContext(typeof(WatchShopDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190803203603_UpdatedEntities")]
+    partial class UpdatedEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -144,17 +146,9 @@ namespace WatchShop.Web.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CartId");
-
-                    b.Property<string>("PendingOrderId");
-
                     b.Property<string>("ProductId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CartId");
-
-                    b.HasIndex("PendingOrderId");
 
                     b.HasIndex("ProductId");
 
@@ -194,6 +188,8 @@ namespace WatchShop.Web.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("CartId");
+
                     b.Property<string>("CategoryId");
 
                     b.Property<string>("Description");
@@ -204,11 +200,17 @@ namespace WatchShop.Web.Data.Migrations
                     b.Property<string>("Model")
                         .IsRequired();
 
+                    b.Property<string>("PendingOrderId");
+
                     b.Property<decimal>("Price");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CartId");
+
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("PendingOrderId");
 
                     b.ToTable("Products");
                 });
@@ -321,14 +323,6 @@ namespace WatchShop.Web.Data.Migrations
 
             modelBuilder.Entity("WatchShop.Models.CartItem", b =>
                 {
-                    b.HasOne("WatchShop.Models.Cart")
-                        .WithMany("Products")
-                        .HasForeignKey("CartId");
-
-                    b.HasOne("WatchShop.Models.PendingOrder")
-                        .WithMany("Items")
-                        .HasForeignKey("PendingOrderId");
-
                     b.HasOne("WatchShop.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId");
@@ -336,9 +330,17 @@ namespace WatchShop.Web.Data.Migrations
 
             modelBuilder.Entity("WatchShop.Models.Product", b =>
                 {
+                    b.HasOne("WatchShop.Models.Cart")
+                        .WithMany("Products")
+                        .HasForeignKey("CartId");
+
                     b.HasOne("WatchShop.Models.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId");
+
+                    b.HasOne("WatchShop.Models.PendingOrder")
+                        .WithMany("Items")
+                        .HasForeignKey("PendingOrderId");
                 });
 
             modelBuilder.Entity("WatchShop.Models.User", b =>

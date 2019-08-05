@@ -36,23 +36,25 @@ namespace WatchShop.Web.Controllers
             var username = User.Identity.Name;
 
             var user = this.context.Users
-                .Include(c => c.Cart)
-                .ThenInclude(p => p.Products)
-                .ThenInclude(p => p.Product)
-                .FirstOrDefault(u => u.UserName == username);
+                 .Include(c => c.Cart)
+                 .ThenInclude(p => p.Products)
+                 .ThenInclude(p => p.Product)
+                 .FirstOrDefault(u => u.UserName == username);
+
 
             var order = new PendingOrder()
             {
                 Address = model.Address,
                 FullName = model.FullName,
                 IsConfirmed = false,
-                Items = user.Cart.Products
+                Items = new List<CartItem>(user.Cart.Products)
             };
 
             this.context.PendingOrders.Add(order);
             user.Cart.Products.Clear();
             this.context.SaveChanges();
 
+            
             return RedirectToAction("Index", "Home");
         }
     }

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<OrdersViewModel>
+
+@{
+    ViewData["Title"] = "All";
+}
+
+<!--start-ckeckout-->
+<div class="ckeckout">
+    <div class="container">
+        <div class="ckeck-top heading">
+            <h2>PENDING ORDERS</h2>
+        </div>
+        <div class="ckeckout-top">
+            <div class="cart-items">
+                <div class="in-check">
+                    <ul class="unit">
+                        <li><span>Full Name</span></li>
+                        <li><span>Adress</span></li>
+                        <li><span>Status</span></li>
+                        <li><span>Items</span></li>
+                        <li> </li>
+                        <div class="clearfix"> </div>
+                    </ul>
+                    @foreach (var order in Model)
+                    {
+                        <ul class="cart-header">
+                            <li><span class="name">@order.FullName</span></li>
+                            <li><span class="cost">@order.Adress</span></li>
+                            @if (order.isConfirmed)
+                            {
+                                <li><span class="name">Confirmed</span></li>
+                            }
+                            else
+                            {
+                                <li><span class="name">Not Confirmed</span></li>
+                            }
+                            <li><span class="cost">@order.Items.Count()</span></li>
+                                <form method="post" asp-controller="PendingOrder" asp-action="Confirm" asp-route-id="@order.Id">
+                                    <div class="col-lg-offset-10">
+                                        <div class="address">
+                                            <input type="submit" value="Confirm Order">
+                                        </div>
+                                    </div>
+                                </form>
+                            <div class="clearfix"> </div>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end-ckeckout-->
