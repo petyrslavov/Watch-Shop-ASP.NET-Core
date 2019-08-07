@@ -62,11 +62,6 @@ body {
     padding: 10px 0px;
 }
 
-.reg {
-    color: #fff;
-}
-
-
 .actions {
     display: flex;
     justify-content: space-between;
