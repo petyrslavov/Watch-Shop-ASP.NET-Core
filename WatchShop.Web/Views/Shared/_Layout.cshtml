@@ -58,6 +58,55 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--start-logo-->
     <!--bottom-header-->
     <!--bottom-header-->
+    <div class="header-bottom">
+        <div class="container">
+            <div class="header">
+                <div class="col-md-9 header-left">
+                    <div class="top-nav">
+                        <ul class="memenu skyblue">
+                            <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li class="grid">
+                                <a href="#">Watches</a>
+                                <div class="mepanel">
+                                    <div class="row">
+                                        <div id="header" class="col1 me-one">
+                                            <h4>Shop</h4>
+                                            <ul class="category">
+                                                <li><a asp-controller="Product" asp-action="All">All</a></li>
+                                                <li><a asp-controller="Product" asp-action="Category" asp-route-id="Men">Men</a></li>
+                                                <li><a asp-controller="Product" asp-action="Category" asp-route-id="Woman">Woman</a></li>
+                                                <li><a asp-controller="Product" asp-action="Category" asp-route-id="Kids">Kids</a></li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="grid">
+                                <a asp-controller="Home" asp-action="Contact">Contact</a>
+                            </li>
+                            <li class="grid">
+                                <a asp-area="Admin" asp-controller="Home" asp-action="Add">Add Watch</a>
+                            </li>
+                            <li class="grid">
+                                <a asp-area="Admin" asp-controller="PendingOrder" asp-action="All">Orders</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <form method="get">
+                    <div class="col-md-3 header-right">
+                        <div class="search-bar">
+                            <input type="text" name="searchTerm" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                            <input asp-controller="Product" asp-action="Search" type="submit" value="">
+                        </div>
+                    </div>
+                </form>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
 
     @RenderBody();
     <!--information-starts-->
