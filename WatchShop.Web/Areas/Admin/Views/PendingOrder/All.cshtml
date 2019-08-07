@@ -35,6 +35,7 @@
                                 <li><span class="name">Not Confirmed</span></li>
                             }
                             <li><span class="cost">@order.Items.Count()</span></li>
+                            <div class="confirm">
                                 <form method="post" asp-controller="PendingOrder" asp-action="Confirm" asp-route-id="@order.Id">
                                     <div class="col-lg-offset-10">
                                         <div class="address">
@@ -42,6 +43,7 @@
                                         </div>
                                     </div>
                                 </form>
+                            </div>
                             <div class="clearfix"> </div>
                         </ul>
                     }

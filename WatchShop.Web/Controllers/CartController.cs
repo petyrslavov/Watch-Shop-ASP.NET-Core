@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WatchShop.Models;
 using WatchShop.Web.Data;
 using WatchShop.Web.Models.ViewModels;
-using Microsoft.AspNetCore.Identity;
 using AutoMapper;
 
 namespace WatchShop.Web.Controllers

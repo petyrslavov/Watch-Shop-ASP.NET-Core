@@ -44,7 +44,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                     </div>
                 </div>
-                <partial name="_LoginPartial" />
                 <div class="col-md-6 top-header-left">
                     <div class="cart box_1">
                         <a asp-controller="Cart" asp-action="Bag">
@@ -56,15 +55,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
                         <div class="clearfix"> </div>
                     </div>
+                    <partial name="_LoginPartial" />
                 </div>
-                <div class="clearfix"></div>
             </div>
         </div>
     </div>
     <!--top-header-->
     <!--start-logo-->
     <div class="logo">
-        <a asp-controller="Home" asp-action="Index"><h1>Luxury Watches</h1></a>
+        <a asp-area="" asp-controller="Home" asp-action="Index"><h1>Luxury Watches</h1></a>
     </div>
     <!--start-logo-->
     <!--bottom-header-->

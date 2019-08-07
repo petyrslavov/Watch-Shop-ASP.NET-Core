@@ -51,23 +51,25 @@
                         </ul>
                     }
                 </div>
-                <form method="get" asp-controller="Product" asp-action="All">
-                    <div class="col-lg-push-10">
-                        <div class="address">
-                            <input type="submit" value="Continue Shopping">
-                        </div>
-                    </div>
-                </form>
-                @if (Model.Any())
-                {
-                    <form method="get" asp-controller="Order" asp-action="Checkout">
-                        <div class="col-lg-offset-10">
+                <div class="actions">
+                    <form method="get" asp-controller="Product" asp-action="All">
+                        <div class="col-lg-push-10">
                             <div class="address">
-                                <input type="submit" value="Procced To Checkout">
+                                <input type="submit" value="Continue Shopping">
                             </div>
                         </div>
                     </form>
-                }
+                    @if (Model.Any())
+                    {
+                        <form method="get" asp-controller="Order" asp-action="Checkout">
+                            <div class="col-lg-offset-10">
+                                <div class="address">
+                                    <input type="submit" value="Procced To Checkout">
+                                </div>
+                            </div>
+                        </form>
+                    }
+                </div>
             </div>
         </div>
     </div>

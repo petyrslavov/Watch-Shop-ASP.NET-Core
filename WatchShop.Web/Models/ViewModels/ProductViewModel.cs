@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using WatchShop.Models;
-
-namespace WatchShop.Web.Models.ViewModels
+﻿namespace WatchShop.Web.Models.ViewModels
 {
     public class ProductViewModel
     {
