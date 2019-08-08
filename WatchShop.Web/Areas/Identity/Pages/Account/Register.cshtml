@@ -23,36 +23,35 @@
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <div class="register-main">
                 <div class="col-md-6 account-left">
-                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <span asp-validation-for="Input.FullName" class="text-danger"></span>
                     <div class="form-group">
                         <input asp-for="Input.FullName" placeholder="Full Name" type="text" tabindex="1" required>
-                        <span asp-validation-for="Input.FullName" class="text-danger"></span>
                     </div>
+                    <span asp-validation-for="Input.Username" class="text-danger"></span>
                     <div class="form-group">
                         <input asp-for="Input.Username" placeholder="Username" type="text" tabindex="1" required>
-                        <span asp-validation-for="Input.Username" class="text-danger"></span>
                     </div>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
                     <div class="form-group">
                         <input asp-for="Input.Email" placeholder="Email" type="text" tabindex="1" required>
-                        <span asp-validation-for="Input.Email" class="text-danger"></span>
                     </div>
+                    <span asp-validation-for="Input.Address" class="text-danger"></span>
                     <div class="form-group">
                         <input asp-for="Input.Address" placeholder="Address" type="text" tabindex="1" required>
-                        <span asp-validation-for="Input.Address" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6 account-left">
+                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
                     <div class="form-group">
                         <input asp-for="Input.PhoneNumber" placeholder="Phone Number" type="text" tabindex="1" required>
-                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
                     </div>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
                     <div class="form-group">
                         <input asp-for="Input.Password" placeholder="Password" type="password" tabindex="1" required>
-                        <span asp-validation-for="Input.Password" class="text-danger"></span>
                     </div>
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                     <div class="form-group">
                         <input asp-for="Input.ConfirmPassword" placeholder="Confirm Password" type="password" tabindex="1" required>
-                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="clearfix"></div>
