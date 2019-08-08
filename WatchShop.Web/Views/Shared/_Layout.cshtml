@@ -64,7 +64,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-9 header-left">
                     <div class="top-nav">
                         <ul class="memenu skyblue">
-                            <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                             <li class="grid">
                                 <a href="#">Watches</a>
                                 <div class="mepanel">
@@ -72,10 +72,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <div id="header" class="col1 me-one">
                                             <h4>Shop</h4>
                                             <ul class="category">
-                                                <li><a asp-controller="Product" asp-action="All">All</a></li>
-                                                <li><a asp-controller="Product" asp-action="Category" asp-route-id="Men">Men</a></li>
-                                                <li><a asp-controller="Product" asp-action="Category" asp-route-id="Woman">Woman</a></li>
-                                                <li><a asp-controller="Product" asp-action="Category" asp-route-id="Kids">Kids</a></li>
+                                                <li><a asp-area="" asp-controller="Product" asp-action="All">All</a></li>
+                                                <li><a asp-area="" asp-controller="Product" asp-action="Category" asp-route-id="Men">Men</a></li>
+                                                <li><a asp-area="" asp-controller="Product" asp-action="Category" asp-route-id="Woman">Woman</a></li>
+                                                <li><a asp-area="" asp-controller="Product" asp-action="Category" asp-route-id="Kids">Kids</a></li>
 
                                             </ul>
                                         </div>
@@ -83,14 +83,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </div>
                             </li>
                             <li class="grid">
-                                <a asp-controller="Home" asp-action="Contact">Contact</a>
+                                <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                             </li>
-                            <li class="grid">
-                                <a asp-area="Admin" asp-controller="Home" asp-action="Add">Add Watch</a>
-                            </li>
-                            <li class="grid">
-                                <a asp-area="Admin" asp-controller="PendingOrder" asp-action="All">Orders</a>
-                            </li>
+                            @if (this.User.IsInRole("Admin"))
+                            {
+                                <li class="grid">
+                                    <a asp-area="Admin" asp-controller="Home" asp-action="Add">Add Watch</a>
+                                </li>
+                                <li class="grid">
+                                    <a asp-area="Admin" asp-controller="PendingOrder" asp-action="All">Orders</a>
+                                </li>
+                            }
                         </ul>
                     </div>
                     <div class="clearfix"> </div>
@@ -99,7 +102,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 header-right">
                         <div class="search-bar">
                             <input type="text" name="searchTerm" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
-                            <input asp-controller="Product" asp-action="Search" type="submit" value="">
+                            <input asp-area="" asp-controller="Product" asp-action="Search" type="submit" value="">
                         </div>
                     </div>
                 </form>
@@ -119,12 +122,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li><a href="#"><span class="fb"></span><h6>Facebook</h6></a></li>
                         <li><a href="#"><span class="twit"></span><h6>Twitter</h6></a></li>
                         <li><a href="#"><span class="google"></span><h6>Google+</h6></a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 infor-left">
-                    <h3>My Account</h3>
-                    <ul>
-                        <li><a href="/Identity/Account/Manage"><p>My Account</p></a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 infor-left">
