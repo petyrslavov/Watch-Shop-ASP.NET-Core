@@ -1964,6 +1964,8 @@ a.add-cart {
 
     .thumb-image > img {
         width: 100%;
+        height: auto;
+        display: block;
     }
 /*--end-slide--*/
 .menu_drop {
@@ -1972,6 +1974,7 @@ a.add-cart {
     padding: 0;
     list-style: none;
 }
+
 
 ul.menu_drop li.item1 {
     background: rgba(0, 0, 0, 0.78);
