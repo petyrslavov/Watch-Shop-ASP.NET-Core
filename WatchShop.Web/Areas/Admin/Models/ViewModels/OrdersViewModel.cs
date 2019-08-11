@@ -15,7 +15,7 @@ namespace WatchShop.Web.Areas.Admin.Models.ViewModels
 
         public string FullName { get; set; }
 
-        public string Adress { get; set; }
+        public string Address { get; set; }
 
         public bool isConfirmed { get; set; }
 
@@ -29,7 +29,7 @@ namespace WatchShop.Web.Areas.Admin.Models.ViewModels
                 {
                     Id = order.Id,
                     FullName = order.FullName,
-                    Adress = order.Address,
+                    Address = order.Address,
                     isConfirmed = order.IsConfirmed,
                     Items = order.Items
                 };
