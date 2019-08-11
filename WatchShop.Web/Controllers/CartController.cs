@@ -5,9 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using WatchShop.Web.Data;
 using WatchShop.Web.Models.ViewModels;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WatchShop.Web.Controllers
 {
+    [Authorize]
     public class CartController : Controller
     {
         private readonly IMapper mapper;

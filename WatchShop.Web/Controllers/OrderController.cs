@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WatchShop.Models;
@@ -8,6 +9,7 @@ using WatchShop.Web.Models.BindingModels;
 
 namespace WatchShop.Web.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         public OrderController(WatchShopDbContext context)
