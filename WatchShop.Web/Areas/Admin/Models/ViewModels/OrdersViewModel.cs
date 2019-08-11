@@ -21,19 +21,5 @@ namespace WatchShop.Web.Areas.Admin.Models.ViewModels
 
         public ICollection<CartItem> Items { get; set; }
 
-        public static Func<WatchShop.Models.PendingOrder, OrdersViewModel> FromOrder
-        {
-            get
-            {
-                return order => new OrdersViewModel()
-                {
-                    Id = order.Id,
-                    FullName = order.FullName,
-                    Address = order.Address,
-                    isConfirmed = order.IsConfirmed,
-                    Items = order.Items
-                };
-            }
-        }
     }
 }
