@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WatchShop.Models;
 using AutoMapper;
+using WatchShop.Services;
 
 namespace WatchShop.Web
 {
@@ -41,6 +42,10 @@ namespace WatchShop.Web
                             .AddDefaultTokenProviders()
                             .AddEntityFrameworkStores<WatchShopDbContext>();
 
+
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ICartService, CartService>();
+            services.AddTransient<IOrderService, OrderService>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

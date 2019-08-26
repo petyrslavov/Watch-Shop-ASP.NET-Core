@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using WatchShop.Models;
+using System.Text;
 
-namespace WatchShop.Web.Models.BindingModels
+namespace WatchShop.Services.ServicesModels
 {
-    public class OrderBindingModel
+    public class OrderServiceBindingModel
     {
         [Required]
-        [Display(Name ="Full Name")]
+        [Display(Name = "Full Name")]
         public string FullName { get; set; }
 
         [Required]

@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WatchShop.Models;
+using WatchShop.Services;
+using WatchShop.Services.ServicesModels;
 using WatchShop.Web.Data;
 using WatchShop.Web.Models.BindingModels;
 
@@ -12,9 +15,12 @@ namespace WatchShop.Web.Controllers
     [Authorize]
     public class OrderController : Controller
     {
-        public OrderController(WatchShopDbContext context)
+        private readonly IOrderService orderService;
+
+        public OrderController(WatchShopDbContext context, IOrderService orderService)
         {
             this.context = context;
+            this.orderService = orderService;
         }
 
         public WatchShopDbContext context { get; set; }
@@ -26,7 +32,7 @@ namespace WatchShop.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Checkout(OrderBindingModel model)
+        public IActionResult Checkout(OrderServiceBindingModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -35,25 +41,7 @@ namespace WatchShop.Web.Controllers
 
             var username = User.Identity.Name;
 
-            var user = this.context.Users
-                 .Include(c => c.Cart)
-                 .ThenInclude(p => p.Products)
-                 .ThenInclude(p => p.Product)
-                 .FirstOrDefault(u => u.UserName == username);
-
-
-            var order = new PendingOrder()
-            {
-                Address = model.Address,
-                FullName = model.FullName,
-                IsConfirmed = false,
-                Items = new List<CartItem>(user.Cart.Products)
-            };
-
-            this.context.PendingOrders.Add(order);
-            user.Cart.Products.Clear();
-            this.context.SaveChanges();
-
+            orderService.CreateOrder(model, username);
             
             return RedirectToAction("Index", "Home");
         }

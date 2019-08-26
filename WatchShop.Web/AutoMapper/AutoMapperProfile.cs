@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WatchShop.Models;
+using WatchShop.Services.ServicesModels;
 using WatchShop.Web.Areas.Admin.Models.ViewModels;
+using WatchShop.Web.Models.BindingModels;
 using WatchShop.Web.Models.ViewModels;
 
 namespace WatchShop.Web.AutoMapper
@@ -13,13 +15,15 @@ namespace WatchShop.Web.AutoMapper
     {
         public AutoMapperProfile()
         {
-            CreateMap<Product, ProductViewModel>();
+            CreateMap<Product, ProductServiceViewModel>();
 
-            CreateMap<Product, ProductDetailsViewModel>();
+            CreateMap<Product, ProductServiceDetailsViewModel>();
 
             CreateMap<Cart, CartViewModel>();
 
             CreateMap<PendingOrder, OrdersViewModel>();
+
+            CreateMap<OrderServiceBindingModel, PendingOrder>();
         }
     }
 }

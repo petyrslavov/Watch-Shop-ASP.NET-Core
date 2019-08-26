@@ -6,49 +6,41 @@ using WatchShop.Web.Data;
 using WatchShop.Web.Models.ViewModels;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using WatchShop.Services;
 
 namespace WatchShop.Web.Controllers
 {
     [Authorize]
     public class CartController : Controller
     {
-        private readonly IMapper mapper;
+        private readonly ICartService cartService;
+
         public WatchShopDbContext context { get; set; }
 
-        public CartController(WatchShopDbContext context, IMapper mapper)
+        public CartController(WatchShopDbContext context, ICartService cartService)
         {
             this.context = context;
-            this.mapper = mapper;
+            this.cartService = cartService;
         }
 
         [HttpGet]
         public IActionResult Bag(string id)
         {
-            var cart = this.context.Carts
-               .Include(p => p.Products)
-               .ThenInclude(p => p.Product)
-               .SingleOrDefault(p => p.Id == id);
+            if (id == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            var userCart = cartService.GetUserCart(id);
 
-            var products = cart.Products
-                .Select(p => p.Product)
-                .ToList();
-
-            var model = mapper.Map<IEnumerable<ProductViewModel>>(products);
-
-            return View(model);
+            return View(userCart);
         }
 
         [HttpPost]
         public IActionResult Remove(string id)
         {
-            var productToRemove = this.context.CartItems
-                .Include(p => p.Product)
-                .FirstOrDefault(p => p.ProductId == id);
+            cartService.RemoveProductFromCart(id);
 
-            this.context.CartItems.Remove(productToRemove);
-            this.context.SaveChanges();
-
-            var username = this.User.Identity.Name;
+            var username = this.User.Identity.Name; 
             var user = this.context.Users.Include(c => c.Cart).FirstOrDefault(u => u.UserName == username);
             var cartId = user.Cart.Id;
 

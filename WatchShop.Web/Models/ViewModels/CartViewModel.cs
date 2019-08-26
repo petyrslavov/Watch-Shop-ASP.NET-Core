@@ -3,6 +3,5 @@
     public class CartViewModel
     {
         public string Id { get; set; }
-
     }
 }

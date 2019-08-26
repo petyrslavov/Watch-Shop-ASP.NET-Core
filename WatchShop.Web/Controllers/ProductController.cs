@@ -4,6 +4,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WatchShop.Models;
+using WatchShop.Services;
 using WatchShop.Web.Data;
 using WatchShop.Web.Models.ViewModels;
 
@@ -11,72 +12,59 @@ namespace WatchShop.Web.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly IMapper mapper;
+        private readonly IProductService productService;
         public WatchShopDbContext context { get; set; }
-
-        public ProductController(WatchShopDbContext context, IMapper mapper)
-        {
-            this.context = context;
-            this.mapper = mapper;
-        }
-
 
         [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; }
 
+        public ProductController(WatchShopDbContext context, IProductService productService)
+        {
+            this.context = context;
+            this.productService = productService;
+        }
+
         [HttpGet]
         public IActionResult All()
         {
-            var products = this.context.Products.ToList();
+            var products = productService.GetAllProducts();
 
-            var model = mapper.Map<IEnumerable<ProductViewModel>>(products);
-
-            return View(model);
+            return View(products);
         }
 
         [HttpGet]
         public IActionResult Details(string id)
         {
-            var product = this.context.Products
-                .FirstOrDefault(p => p.Id == id);
+            var product = productService.GetProductDetails(id);
 
             if (product == null)
             {
                 return this.NotFound();
             }
 
-            var model = mapper.Map<ProductDetailsViewModel>(product);
-
-            return View(model);
+            return View(product);
         }
 
         [HttpGet]
         public IActionResult Category(string id)
         {
-            var products = this.context.Products.Where(c => c.Category.Name == id).ToList();
+            var products = productService.GetProductsByCategory(id);
 
-            var model = mapper.Map<IEnumerable<ProductViewModel>>(products);
-
-            return View(model);
+            return View(products);
         }
-
 
         [HttpGet]
         public IActionResult Search()
         {
             if (string.IsNullOrEmpty(this.SearchTerm))
             {
-                return RedirectToAction("Index", "Home");
+                return null;
             }
 
-            var foundProducts = this.context.Products
-                .Where(a => a.Model.ToLower().Contains(this.SearchTerm.ToLower()))
-                .OrderBy(a => a.Model)
-                .ToList();
+            var searchTerm = this.SearchTerm;
+            var products = productService.SearchProduct(searchTerm);
 
-            var model = mapper.Map<IEnumerable<ProductViewModel>>(foundProducts);
-
-            return this.View(model);
+            return this.View(products);
         }
 
         [HttpPost]

@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WatchShop.Data\WatchShop.Data.csproj" />
+    <ProjectReference Include="..\WatchShop.Services\WatchShop.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
