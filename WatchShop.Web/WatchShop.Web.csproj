@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <UserSecretsId>aspnet-WatchShop.Web-EDA76A63-D00D-4E87-B0A1-55BC41E6CF01</UserSecretsId>
   </PropertyGroup>
 

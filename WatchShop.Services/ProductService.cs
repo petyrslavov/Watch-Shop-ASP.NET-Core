@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,7 @@ namespace WatchShop.Services
         public ProductServiceDetailsViewModel GetProductDetails(string id)
         {
             var product = this.context.Products
+                .Include(c => c.Category)
                .FirstOrDefault(p => p.Id == id);
 
             var model = mapper.Map<ProductServiceDetailsViewModel>(product);

@@ -14,35 +14,117 @@
     </div>
 </div>
 
+@*<div class="single contact">
+        <div class="container">
+            <div class="single-main">
+                <div class="col-md-9 single-main-left">
+                    <div class="sngl-top">
+                        <div class="col-md-5 single-top-left">
+                        </div>
+                        <div class="col-md-7 single-top-right">
+                            <div class="single-para simpleCart_shelfItem">
+                                <div class="thumb-image"> <img src=@Model.Image class="img-responsive" alt="" draggable="false"> </div>
+                                <h2>@Model.Model</h2>
+                                <h5 class="item_price">$ @Model.Price</h5>
+                                <p>@Model.Description</p>
+                                <div class="available">
+                                </div>
+                                <form method="post" asp-controller="Product" asp-action="Add" asp-route-id="@Model.Id">
+                                    <div class="form-group row">
+                                        <div class="col-sm-10 offset-2">
+                                            <input type="submit" class="btn btn-dark" value="ADD TO CART">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>*@
+
 <div class="single contact">
     <div class="container">
         <div class="single-main">
             <div class="col-md-9 single-main-left">
                 <div class="sngl-top">
                     <div class="col-md-5 single-top-left">
+                        <div class="flexslider">
+                            <div class="thumb-image"> <img src=@Model.Image data-imagezoom="true" class="img-responsive" alt="" /> </div>
+                        </div>
+                        <!-- FlexSlider -->
+                        <script src="js/imagezoom.js"></script>
+                        <script defer src="js/jquery.flexslider.js"></script>
+                        <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+
+                        <script>
+                            // Can also be used with $(document).ready()
+                            $(window).load(function () {
+                                $('.flexslider').flexslider({
+                                    animation: "slide",
+                                    controlNav: "thumbnails"
+                                });
+                            });
+                        </script>
                     </div>
                     <div class="col-md-7 single-top-right">
                         <div class="single-para simpleCart_shelfItem">
-                            <div class="thumb-image"> <img src=@Model.Image class="img-responsive" alt="" draggable="false"> </div>
                             <h2>@Model.Model</h2>
+                            <div class="star-on">
+                                <ul class="star-footer">
+                                    <li><a href="#"><i> </i></a></li>
+                                    <li><a href="#"><i> </i></a></li>
+                                    <li><a href="#"><i> </i></a></li>
+                                    <li><a href="#"><i> </i></a></li>
+                                    <li><a href="#"><i> </i></a></li>
+                                </ul>
+                                <div class="clearfix"> </div>
+                            </div>
+
                             <h5 class="item_price">$ @Model.Price</h5>
                             <p>@Model.Description</p>
                             <div class="available">
+                                <ul>
+                                    <li>
+                                        Color
+                                        <select>
+                                            <option>Silver</option>
+                                            <option>Black</option>
+                                            <option>Dark Black</option>
+                                            <option>Red</option>
+                                        </select>
+                                    </li>
+                                    <li class="size-in">
+                                        Size<select>
+                                            <option>Large</option>
+                                            <option>Medium</option>
+                                            <option>Small</option>
+                                        </select>
+                                    </li>
+                                    <div class="clearfix"> </div>
+                                </ul>
                             </div>
-                            <form method="post" asp-controller="Product" asp-action="Add" asp-route-id="@Model.Id">
-                                <div class="form-group row">
-                                    <div class="col-sm-10 offset-2">
-                                        <input type="submit" class="btn btn-dark" value="ADD TO CART">
-                                    </div>
+                            <ul class="tag-men">
+                                <li>
+                                    <span>TAG</span>
+                                    <span class="women1">: @Model.Category.Name</span>
+                                </li>
+                            </ul>
+                            <br />
+                        <form method="post" asp-controller="Product" asp-action="Add" asp-route-id="@Model.Id">
+                            <div class="form-group row">
+                                <div class="col-sm-10 offset-2">
+                                    <input type="submit" class="btn btn-dark" value="ADD TO CART">
                                 </div>
-                            </form>
+                            </div>
+                        </form>
                         </div>
                     </div>
-                    <div class="clearfix"> </div>
                 </div>
             </div>
-            <div class="clearfix"> </div>
         </div>
     </div>
 </div>
-
