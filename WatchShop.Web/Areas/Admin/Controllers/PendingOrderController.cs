@@ -35,6 +35,19 @@ namespace WatchShop.Web.Areas.Admin.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public IActionResult OrderDetails(string id)
+        {
+            var order = this.context.PendingOrders
+                .Include(i => i.Items)
+                .Include("Items.Product")
+                .FirstOrDefault(o => o.Id == id);
+
+            var model = mapper.Map<OrdersViewModel>(order);
+
+            return View(model);
+        }
+
         [HttpPost]
         public IActionResult Confirm(string id)
         {

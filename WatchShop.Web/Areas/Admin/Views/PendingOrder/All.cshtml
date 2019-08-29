@@ -25,7 +25,6 @@
                 <div class="in-check">
                     <ul class="unit">
                         <li><span>Full Name</span></li>
-                        <li><span>Adress</span></li>
                         <li><span>Status</span></li>
                         <li><span>Items</span></li>
                         <li> </li>
@@ -33,29 +32,30 @@
                     </ul>
                     @foreach (var order in Model)
                     {
-                        <ul class="cart-header">
-                            <li><span class="name">@order.FullName</span></li>
-                            <li><span class="cost">@order.Address</span></li>
-                            @if (order.isConfirmed)
-                            {
-                                <li><span class="name">Confirmed</span></li>
-                            }
-                            else
-                            {
-                                <li><span class="name">Pending</span></li>
-                            }
-                            <li><span class="cost">@order.Items.Count()</span></li>
-                            <div class="confirm">
-                                <form method="post" asp-controller="PendingOrder" asp-action="Confirm" asp-route-id="@order.Id">
-                                    <div class="col-lg-offset-10">
-                                        <div class="address">
-                                            <input type="submit" value="Confirm Order">
-                                        </div>
+                    <ul class="cart-header">
+
+                        <li><span class="name">@order.FullName</span></li>
+                        @if (order.isConfirmed)
+                        {
+                            <li><span class="name">Confirmed</span></li>
+                        }
+                        else
+                        {
+                            <li><span class="name">Pending</span></li>
+                        }
+                        <li><span class="cost">@order.Items.Count()</span></li>
+                        <li>
+                          
+                             <form method="get" asp-controller="PendingOrder" asp-action="OrderDetails" asp-route-id="@order.Id">
+                                <div class="col-lg-offset-10">
+                                    <div class="address">
+                                        <input type="submit" value="Details">
                                     </div>
-                                </form>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </ul>
+                                </div>
+                            </form>
+                        </li>
+                        <div class="clearfix"> </div>
+                    </ul>
                     }
                 </div>
             </div>

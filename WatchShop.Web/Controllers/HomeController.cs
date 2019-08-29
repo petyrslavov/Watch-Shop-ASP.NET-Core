@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System.Diagnostics;
+using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WatchShop.Web.Data;
+using WatchShop.Web.Models;
 using WatchShop.Web.Models.ViewModels;
 
 namespace WatchShop.Web.Controllers

@@ -1,0 +1,64 @@
+﻿@model WatchShop.Web.Areas.Admin.Models.ViewModels.OrdersViewModel
+
+@{
+    ViewData["Title"] = "OrderDetails";
+}
+
+<h2 class="text-center">Order Details</h2>
+<hr class="hr-2 bg-primary w-50">
+<div class="products-holder w-50 mx-auto">
+    @foreach (var item in Model.Items)
+    {
+        <div class="product d-flex justify-content-between">
+            <div class="product-name w-75">
+                <h4>@item.Product.Model</h4>
+            </div>
+            <div class="product-quantity-and-price d-flex justify-content-between w-25">
+                <h4 class="text-left w-50">$@(item.Product.Price)</h4>
+            </div>
+        </div>
+    }
+</div>
+<hr class="hr-2 bg-primary w-50">
+<div class="finish-order-holder w-50 mx-auto d-flex justify-content-between">
+    <div class="form-holder w-25">
+        <h3 class="text-left">Total</h3>
+    </div>
+    <div class="price-holder w-25">
+        <h3 class="text-right">$@Model.Items.Sum(order => order.Product.Price).ToString("F2")</h3>
+    </div>
+</div>
+<hr class="hr-2 bg-primary w-50">
+<div class="finish-order-holder w-50 mx-auto d-flex justify-content-between">
+    <div class="form-holder w-25">
+        <h3 class="text-left">Full Name</h3>
+    </div>
+    <div class="price-holder w-25">
+        <h3 class="text-right">@Model.FullName</h3>
+    </div>
+</div>
+<div class="finish-order-holder w-50 mx-auto d-flex justify-content-between">
+    <div class="form-holder w-25">
+        <h3 class="text-left">Address</h3>
+    </div>
+    <div class="price-holder w-25">
+        <h3 class="text-right">@Model.Address</h3>
+    </div>
+</div>
+<hr class="hr-2 bg-primary w-50">
+<div class="finish-order-holder w-50 mx-auto d-flex justify-content-between">
+    <div class="form-holder w-25">
+        <h3 class="text-left">Phone Number</h3>
+    </div>
+    <div class="price-holder w-75">
+        <h3 class="text-right">@Model.PhoneNumber</h3>
+    </div>
+</div>
+<hr class="hr-2 bg-primary w-50">
+<form class="text-center" method="post" asp-controller="PendingOrder" asp-action="Confirm" asp-route-id="@Model.Id">
+        <div class="col-lg-offset-10">
+            <div class="address">
+                <input type="submit" value="Confirm Order">
+            </div>
+        </div>
+ </form>

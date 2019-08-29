@@ -17,6 +17,8 @@ namespace WatchShop.Web.Areas.Admin.Models.ViewModels
 
         public string Address { get; set; }
 
+        public string PhoneNumber { get; set; }
+
         public bool isConfirmed { get; set; }
 
         public ICollection<CartItem> Items { get; set; }
