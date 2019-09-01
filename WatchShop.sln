@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WatchShop.Data", "WatchShop
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WatchShop.Models", "WatchShop.Models\WatchShop.Models.csproj", "{A0706245-FBFE-476B-BC8C-EF4F54E605A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchShop.Services", "WatchShop.Services\WatchShop.Services.csproj", "{E20E8D4A-74BD-4492-8810-5A9453F23DAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WatchShop.Services", "WatchShop.Services\WatchShop.Services.csproj", "{E20E8D4A-74BD-4492-8810-5A9453F23DAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchShop.Tests", "WatchShop.Tests\WatchShop.Tests.csproj", "{D0BF5617-2FAC-456B-95C1-19CCEEF39791}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{E20E8D4A-74BD-4492-8810-5A9453F23DAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E20E8D4A-74BD-4492-8810-5A9453F23DAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E20E8D4A-74BD-4492-8810-5A9453F23DAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0BF5617-2FAC-456B-95C1-19CCEEF39791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0BF5617-2FAC-456B-95C1-19CCEEF39791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0BF5617-2FAC-456B-95C1-19CCEEF39791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0BF5617-2FAC-456B-95C1-19CCEEF39791}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

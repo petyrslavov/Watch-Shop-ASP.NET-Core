@@ -14,5 +14,7 @@ namespace WatchShop.Services
         IEnumerable<ProductServiceViewModel> GetProductsByCategory(string category);
 
         IEnumerable<ProductServiceViewModel> SearchProduct(string searchTerm);
+
+        //void CreateWatch(CreateServiceBindingModel model);
     }
 }

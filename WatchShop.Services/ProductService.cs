@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WatchShop.Models;
 using WatchShop.Services.ServicesModels;
 using WatchShop.Web.Data;
 
@@ -62,5 +63,14 @@ namespace WatchShop.Services
 
             return model;
         }
+
+        //public void CreateWatch(CreateServiceBindingModel model)
+        //{
+
+        //    var watch = mapper.Map<CreateServiceBindingModel, Product>(model);
+
+        //    this.context.Products.Add(watch);
+        //    this.context.SaveChanges();
+        //}
     }
 }

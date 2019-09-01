@@ -3,19 +3,25 @@ using Microsoft.AspNetCore.Mvc;
 using WatchShop.Models;
 using WatchShop.Web.Areas.Admin.Models.BindingModels;
 using WatchShop.Web.Data;
+using WatchShop.Services.ServicesModels;
+using AutoMapper;
+using WatchShop.Services;
 
 namespace WatchShop.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = "Admin")]
     public class HomeController : Controller
-    { 
-        public HomeController(WatchShopDbContext context)
-        {
-            this.context = context;
-        }
+    {
+        private readonly IMapper mapper;
 
         public WatchShopDbContext context { get; set; }
+
+        public HomeController(WatchShopDbContext context, IMapper mapper)
+        {
+            this.context = context;
+            this.mapper = mapper;
+        }
 
         public IActionResult Index()
         {
@@ -51,11 +57,12 @@ namespace WatchShop.Web.Areas.Admin.Controllers
                 Price = bindingModel.Price,
                 Image = bindingModel.Image,
                 CategoryId = category.Id,
-                Category = category  
+                Category = category
             };
 
             this.context.Products.Add(watch);
             this.context.SaveChanges();
+
 
             return this.RedirectToAction("Index", "Home", new { area = "Admin" });
         }
