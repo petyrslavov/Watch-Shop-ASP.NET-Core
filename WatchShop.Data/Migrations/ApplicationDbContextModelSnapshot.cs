@@ -173,6 +173,32 @@ namespace WatchShop.Web.Data.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("WatchShop.Models.Contact", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Email")
+                        .IsRequired();
+
+                    b.Property<string>("Message")
+                        .IsRequired();
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<string>("Phone")
+                        .IsRequired();
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Contacts");
+                });
+
             modelBuilder.Entity("WatchShop.Models.PendingOrder", b =>
                 {
                     b.Property<string>("Id")
@@ -201,7 +227,8 @@ namespace WatchShop.Web.Data.Migrations
 
                     b.Property<string>("CategoryId");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .IsRequired();
 
                     b.Property<string>("Image")
                         .IsRequired();
@@ -337,6 +364,13 @@ namespace WatchShop.Web.Data.Migrations
                     b.HasOne("WatchShop.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId");
+                });
+
+            modelBuilder.Entity("WatchShop.Models.Contact", b =>
+                {
+                    b.HasOne("WatchShop.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("WatchShop.Models.Product", b =>

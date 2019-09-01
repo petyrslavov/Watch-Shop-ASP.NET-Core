@@ -25,6 +25,8 @@ namespace WatchShop.Web.Data
 
         public DbSet<PendingOrder> PendingOrders { get; set; }
 
+        public DbSet<Contact> Contacts { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
 
