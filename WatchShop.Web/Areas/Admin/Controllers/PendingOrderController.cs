@@ -4,6 +4,8 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WatchShop.Services;
+using WatchShop.Services.ServicesModels;
 using WatchShop.Web.Areas.Admin.Models.ViewModels;
 using WatchShop.Web.Data;
 
@@ -14,50 +16,34 @@ namespace WatchShop.Web.Areas.Admin.Controllers
     public class PendingOrderController : Controller
     {
         private readonly WatchShopDbContext context;
-        private readonly IMapper mapper;
+        private readonly IOrderService orderService;
 
-        public PendingOrderController(WatchShopDbContext context, IMapper mapper)
+        public PendingOrderController(WatchShopDbContext context, IOrderService orderService)
         {
             this.context = context;
-            this.mapper = mapper;
+            this.orderService = orderService;
         }
 
         [HttpGet]
         public IActionResult All()
         {
-            var orders = this.context.PendingOrders
-                .Include(i => i.Items)
-                .Where(c => c.IsConfirmed == false)
-                .ToList();
+            var orders = orderService.GetAllPendingOrders();
 
-            var model = mapper.Map<IEnumerable<OrdersViewModel>>(orders);
-
-            return View(model);
+            return View(orders);
         }
 
         [HttpGet]
         public IActionResult OrderDetails(string id)
         {
-            var order = this.context.PendingOrders
-                .Include(i => i.Items)
-                .Include("Items.Product")
-                .FirstOrDefault(o => o.Id == id);
+            var order = orderService.GetOrderDetails(id);
 
-            var model = mapper.Map<OrdersViewModel>(order);
-
-            return View(model);
+            return View(order);
         }
 
         [HttpPost]
         public IActionResult Confirm(string id)
         {
-            var confirmOrder = this.context.PendingOrders
-               .FirstOrDefault(o => o.Id == id);
-
-            confirmOrder.IsConfirmed = true;
-
-            this.context.PendingOrders.Update(confirmOrder);
-            this.context.SaveChanges();
+            orderService.ConfirmOrder(id);
 
             return RedirectToAction("All", "PendingOrder");
         }

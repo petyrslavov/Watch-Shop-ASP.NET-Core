@@ -33,7 +33,7 @@ namespace WatchShop.Tests.Service
                     },
                 }
             };
-            }
+        }
 
         private void SeedData(WatchShopDbContext context)
         {

@@ -38,5 +38,40 @@ namespace WatchShop.Services
             user.Cart.Products.Clear();
             this.context.SaveChanges();
         }
+
+        public IEnumerable<OrderServiceViewModel> GetAllPendingOrders()
+        {
+            var orders = this.context.PendingOrders
+               .Include(i => i.Items)
+               .Where(c => c.IsConfirmed == false)
+               .ToList();
+
+            var model = mapper.Map<IEnumerable<OrderServiceViewModel>>(orders);
+
+            return model;
+        }
+
+        public OrderServiceViewModel GetOrderDetails(string id)
+        {
+            var order = this.context.PendingOrders
+               .Include(i => i.Items)
+               .Include("Items.Product")
+               .FirstOrDefault(o => o.Id == id);
+
+            var model = mapper.Map<OrderServiceViewModel>(order);
+
+            return model;
+        }
+
+        public void ConfirmOrder(string id)
+        {
+            var confirmOrder = this.context.PendingOrders
+               .FirstOrDefault(o => o.Id == id);
+
+            confirmOrder.IsConfirmed = true;
+
+            this.context.PendingOrders.Update(confirmOrder);
+            this.context.SaveChanges();
+        }
     }
 }

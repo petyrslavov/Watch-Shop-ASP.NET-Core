@@ -8,5 +8,11 @@ namespace WatchShop.Services
     public interface IOrderService
     {
         void CreateOrder(OrderServiceBindingModel model, string username);
+
+        IEnumerable<OrderServiceViewModel> GetAllPendingOrders();
+
+        OrderServiceViewModel GetOrderDetails(string id);
+
+        void ConfirmOrder(string id);
     }
 }
